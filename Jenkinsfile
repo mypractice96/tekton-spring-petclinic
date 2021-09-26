@@ -57,7 +57,7 @@ pipeline {
         stage('Dev Build') {
            when { branch 'dev' }
            steps{
-               sh 'mvn clean install -Dcheckstyle.skip'
+               sh 'mvn clean install -Dcheckstyle.skip -DskipTests'
                sh 'docker build -t petclinic-dev:${BUILD_NUMBER} .'
             }
         }
