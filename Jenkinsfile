@@ -22,7 +22,7 @@ pipeline {
         stage('Unit Test') {
             when { branch 'dev' }
             steps {
-                sh 'mvn test'
+                sh 'mvn test -Dcheckstyle.skip'
             }
         }
         stage('Publish Unit Test Results') {
