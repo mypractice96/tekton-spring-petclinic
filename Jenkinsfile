@@ -22,7 +22,7 @@ pipeline {
         stage('Unit Test') {
             when { branch 'dev' }
             steps {
-                sh 'mvn test'
+                sh 'mvn test -Dcheckstyle.skip'
             }
         }
         stage('Publish Unit Test Results') {
@@ -57,7 +57,7 @@ pipeline {
         stage('Dev Build') {
            when { branch 'dev' }
            steps{
-               sh 'mvn clean install'
+               sh 'mvn clean install -Dcheckstyle.skip -DskipTests'
                sh 'docker build -t petclinic-dev:${BUILD_NUMBER} .'
             }
         }
