@@ -81,7 +81,7 @@ pipeline {
         stage('QA Build') {
             when { branch 'qa' }
             steps {
-                sh 'mvn clean install'
+                sh 'mvn clean install -Dcheckstyle.skip -DskipTests'
                 sh 'docker build -t petclinic-qa:${BUILD_NUMBER} .'
             }
         }
@@ -149,7 +149,7 @@ pipeline {
         stage('Prod Build') {
             when { branch 'main' }
             steps {
-                sh 'mvn clean install'
+                sh 'mvn clean install -Dcheckstyle.skip -DskipTests'
                 sh 'docker build -t petclinic:${BUILD_NUMBER} .'
             }
         }
